@@ -49,13 +49,13 @@ ORDER BY `media` DESC;
 
 SELECT `users`.`id`, `users`.`username`, COUNT(`likes`.`post_id`) AS `total_like`
 FROM `users`
-INNER JOIN `medias`
+LEFT JOIN `medias`
 ON `medias`.`user_id` = `users`.`id`
-INNER JOIN `media_post`
+LEFT JOIN `media_post`
 ON `medias`.`id` = `media_post`.`media_id`
-INNER JOIN `posts`
+LEFT JOIN `posts`
 ON `media_post`.`post_id` = `posts`.`id`
-INNER JOIN `likes`
+LEFT JOIN `likes`
 ON `posts`.`id` = `likes`.`post_id`
 GROUP BY `users`.`id`, `users`.`username`
 ORDER BY `total_like` DESC;
